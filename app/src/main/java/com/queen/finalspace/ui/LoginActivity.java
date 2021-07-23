@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @BindView(R.id.findseasonsButton) Button mFindSeasonButton;
     @BindView(R.id.findEditText) EditText mFindEditText;
+    @BindView(R.id.bt_open) Button mBt_open;
     private String location;
 
     @Override
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //  mEditor = mSharedPreferences.edit();
 
         mFindSeasonButton.setOnClickListener(this);
+        mBt_open.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -75,6 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             saveLocationToFireBase(location);
             Toast.makeText(LoginActivity.this, "Watch Out!", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(LoginActivity.this, FindActivity.class);
+            startActivity(intent);
+        }
+        if (v == mBt_open){
+            Intent intent(LoginActivity.this, Camera.class);
             startActivity(intent);
         }
     }
