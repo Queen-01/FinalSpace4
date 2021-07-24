@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }
         if (v == mBt_open){
-            Intent intent(LoginActivity.this, Camera.class);
+            Intent intent = new Intent(LoginActivity.this, CameraActivity.class);
             startActivity(intent);
         }
     }
