@@ -4,18 +4,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.queen.finalspace.R;
 
@@ -26,7 +29,7 @@ import java.util.Date;
 public class CameraActivity extends AppCompatActivity {
     ImageView imageView;
     Button btOpen;
-    String currentPhotoPath;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +64,4 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-   private createFile
 }
