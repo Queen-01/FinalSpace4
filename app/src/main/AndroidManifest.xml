@@ -3,10 +3,9 @@
     package="com.queen.finalspace">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="true" />
+    <uses-feature android:name="android.hardware.camera2" android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalSpace">
-        <activity android:name=".ui.Camera"></activity>
+        <activity android:name=".ui.CameraActivity"></activity>
         <activity android:name=".ui.LoginActivity"></activity>
         <activity android:name=".ui.CreateAccountActivity" />
         <activity android:name=".ui.EpisodeDetailActivity" /> <!-- <activity android:name=".EpisodeActivity"></activity> -->
