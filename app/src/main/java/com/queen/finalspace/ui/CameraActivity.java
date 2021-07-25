@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,9 +28,11 @@ import java.io.IOException;
 import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
-    ImageView imageView;
-    Button btOpen;
-    TextView textView;
+    private ImageView imageView;
+    private Button btOpen;
+    private TextView textView;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +42,24 @@ public class CameraActivity extends AppCompatActivity {
         imageView = findViewById(R.id.captureImage);
         btOpen = findViewById(R.id.btopen);
 
-        if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) !=
-        PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{
-                    Manifest.permission.CAMERA
-            },
-                    100);
-        }
+//        if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) !=
+//        PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(CameraActivity.this, new String[]{
+//                    Manifest.permission.CAMERA
+//            },
+//                    100);
+//        }
 
         btOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 100);
+                try {
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                }catch (ActivityNotFoundException e) {
+
+                }
+
             }
         });
     }

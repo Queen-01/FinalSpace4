@@ -3,10 +3,16 @@ package com.queen.finalspace.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.arch.core.internal.SafeIterableMap;
 import androidx.fragment.app.Fragment;
 
+import com.queen.finalspace.Constants;
 import com.queen.finalspace.model.Episode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,6 +43,7 @@ public class EpisodeDetailFragment extends Fragment {
     @BindView(R.id.like) TextView mLikeTextView;
     @BindView(R.id.unlike) TextView mUnlikeTextView;
     private Episode episode;
+    private String mSource;
 
 
 
@@ -60,6 +67,7 @@ public class EpisodeDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         assert getArguments() != null;
         episode = Parcels.unwrap(getArguments().getParcelable("Episode"));
+        setHasOptionsMenu(true);
     }
 
     @Override
