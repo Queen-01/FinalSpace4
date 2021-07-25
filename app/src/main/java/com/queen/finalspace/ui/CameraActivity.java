@@ -32,6 +32,8 @@ public class CameraActivity extends AppCompatActivity {
     private Button btOpen;
     private TextView textView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    String currentPhotoPath;
+
 
 
     @Override
@@ -54,14 +56,32 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (intent.resolveActivity(getPackageManager()) != null){
+                    File photoFile = null;
+                }
                 try {
-                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-                }catch (ActivityNotFoundException e) {
+                    photoFile = createImageFile();
+
+                }catch (IOException e) {
 
                 }
+                if (photoFile != null){
+                    Uri photoURI = File.provider.getUriForFile(this, "com.queen.finalspace.provider", photoFile);
 
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                }
             }
         });
+    }
+
+    private File createImageFile() {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "Episode_JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(storageDir, imageFileName + ".jpg", storageDir);
+        String currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     @Override
@@ -70,6 +90,14 @@ public class CameraActivity extends AppCompatActivity {
             Bitmap captureImage = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(captureImage);
         }
+    }
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
 
 }
