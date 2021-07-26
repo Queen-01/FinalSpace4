@@ -3,7 +3,7 @@
     package="com.queen.finalspace">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" android:required="true" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalSpace">
+        <activity android:name=".ui.CameraActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -23,10 +24,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-<!--        <activity android:name=".ui.CameraActivity"></activity>-->
-        <activity android:name=".ui.LoginActivity"></activity>
+
+        <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.CreateAccountActivity" />
         <activity android:name=".ui.EpisodeDetailActivity" /> <!-- <activity android:name=".EpisodeActivity"></activity> -->
         <activity android:name=".ui.FindActivity">
