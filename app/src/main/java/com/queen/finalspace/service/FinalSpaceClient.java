@@ -1,6 +1,8 @@
-package com.queen.finalspace.service;
+ add package com.queen.finalspace.service;
 
-import retrofit2.Retrofit;
+ import com.queen.finalspace.service.FinalSpaceApi;
+
+ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
